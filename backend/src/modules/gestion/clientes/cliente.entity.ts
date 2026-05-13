@@ -1,5 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+export enum EstadoCliente {
+  ACTIVO = 'Activo',
+  BAJA = 'Baja',
+}
+
 @Entity('clientes')
 export class Cliente {
   @PrimaryGeneratedColumn()
@@ -8,6 +13,10 @@ export class Cliente {
   @Column({ unique: true })
   nombre!: string;
 
-  @Column()
-  estado!: string;
+  @Column({
+    type: 'enum',
+    enum: EstadoCliente,
+    default: EstadoCliente.ACTIVO,
+  })
+  estado!: EstadoCliente;
 }

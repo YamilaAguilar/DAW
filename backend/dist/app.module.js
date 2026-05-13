@@ -29,7 +29,7 @@ exports.AppModule = AppModule = __decorate([
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_NAME,
                 autoLoadEntities: true,
-                synchronize: false,
+                synchronize: true,
             }),
             auth_module_1.AuthModule,
             clientes_module_1.ClientesModule,
