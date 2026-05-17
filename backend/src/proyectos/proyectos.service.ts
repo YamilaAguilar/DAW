@@ -11,23 +11,43 @@ export class ProyectosService {
     private readonly proyectosRepository: Repository<Proyecto>,
   ) {}
 
-  findAll() {
+  findAll(estado?: string, clienteId?: string) {
+    const where: any = {};
+
+    if (estado) where.estado = estado;
+
+    if (clienteId) {
+      where.cliente = { id: Number(clienteId) };
+    }
+
     return this.proyectosRepository.find({
+      where,
       relations: ['cliente'],
     });
   }
 
-  create(data: Partial<Proyecto>) {
-    const proyecto = this.proyectosRepository.create(data);
-    return this.proyectosRepository.save(proyecto);
-  }
-
-  async update(id: number, data: Partial<Proyecto>) {
-    await this.proyectosRepository.update(id, data);
-
+  async findOne(id: number) {
     return this.proyectosRepository.findOne({
       where: { id },
       relations: ['cliente'],
     });
+  }
+
+  async create(data: any) {
+    const proyecto = this.proyectosRepository.create({
+      ...data,
+      cliente: data.clienteId ? { id: data.clienteId } : null,
+    });
+
+    return this.proyectosRepository.save(proyecto);
+  }
+
+  async update(id: number, data: any) {
+    await this.proyectosRepository.update(id, {
+      ...data,
+      cliente: data.clienteId ? { id: data.clienteId } : undefined,
+    });
+
+    return this.findOne(id);
   }
 }
