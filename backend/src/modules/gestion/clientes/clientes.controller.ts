@@ -6,9 +6,13 @@ import {
   Param,
   Body,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 
 import { ClientesService } from './clientes.service';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+
+@UseGuards(JwtAuthGuard)
 
 @Controller('clientes')
 export class ClientesController {
