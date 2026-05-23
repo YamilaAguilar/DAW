@@ -12,7 +12,7 @@ import {
 import { ClientesService } from './clientes.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 
-@UseGuards(JwtAuthGuard)
+//@UseGuards(JwtAuthGuard)
 
 @Controller('clientes')
 export class ClientesController {
