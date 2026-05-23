@@ -23,5 +23,10 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'proyectos',
     pathMatch: 'full'
-  }
+  },
+
+  {
+    path: 'proyectos/:id',
+    component: ProyectoFormComponent
+  },
 ];

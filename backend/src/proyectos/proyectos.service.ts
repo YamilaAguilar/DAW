@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Proyecto } from './proyecto.entity';
+import { Cliente } from '../modules/gestion/clientes/cliente.entity';
 
 @Injectable()
 export class ProyectosService {
@@ -10,6 +11,9 @@ export class ProyectosService {
   constructor(
     @InjectRepository(Proyecto)
     private readonly proyectosRepository: Repository<Proyecto>,
+
+    @InjectRepository(Cliente)
+    private readonly clientesRepository: Repository<Cliente>,
   ) {}
 
   findAll(estado?: string, clienteId?: string) {
@@ -41,8 +45,20 @@ export class ProyectosService {
     });
 
   }
-
+ 
   async create(data: any) {
+
+    if (data.clienteId) {
+
+      const cliente = await this.clientesRepository.findOne({
+        where: { id: Number(data.clienteId) },
+      });
+
+    if (!cliente || cliente.estado !== 'Activo') {
+      throw new Error('El cliente debe estar Activo');
+    }
+
+  }
 
     const proyecto = this.proyectosRepository.create({
 
@@ -61,6 +77,18 @@ export class ProyectosService {
   }
 
   async update(id: number, data: any) {
+
+    if (data.clienteId) {
+
+    const cliente = await this.clientesRepository.findOne({
+      where: { id: Number(data.clienteId) },
+    });
+
+    if (!cliente || cliente.estado !== 'Activo') {
+      throw new Error('El cliente debe estar Activo');
+    }
+
+  }
 
     const proyecto = await this.findOne(id);
 
