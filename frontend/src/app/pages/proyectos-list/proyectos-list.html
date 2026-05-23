@@ -1,0 +1,114 @@
+<h2>Proyectos</h2>
+
+<a routerLink="/proyectos/nuevo">
+  Nuevo Proyecto
+</a>
+
+<br><br>
+
+<p>Cantidad: {{ proyectos.length }}</p>
+
+<hr>
+
+<h3>Filtros</h3>
+
+<label>Estado:</label>
+
+<select [(ngModel)]="filtroEstado">
+
+  <option value="">Todos</option>
+
+  <option value="Activo">
+    Activo
+  </option>
+
+  <option value="Finalizado">
+    Finalizado
+  </option>
+
+  <option value="Baja">
+    Baja
+  </option>
+
+</select>
+
+&nbsp;&nbsp;
+
+<label>Cliente:</label>
+
+<select [(ngModel)]="filtroCliente">
+
+  <option value="">
+    Todos
+  </option>
+
+  @for (c of clientes; track c.id) {
+
+    <option [value]="c.id">
+
+      {{ c.nombre }}
+
+    </option>
+
+  }
+
+</select>
+
+&nbsp;&nbsp;
+
+<button (click)="cargarProyectos()">
+  Filtrar
+</button>
+
+<hr>
+
+<table border="1" width="100%">
+
+  <thead>
+
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Estado</th>
+      <th>Cliente</th>
+      <th>Acciones</th>
+      <th>Ver Detalles</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    @for (p of proyectos; track p.id) {
+
+      <tr>
+
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.estado }}</td>
+        <td>{{ p.cliente?.nombre || 'Interno' }}</td>
+
+        <td>
+
+          <a [routerLink]="['/proyectos/editar', p.id]">
+            Editar
+          </a>
+    
+        </td>
+
+        <td>
+
+          <a [routerLink]="['/proyectos', p.id]">
+            Ver detalle
+          </a>
+
+        </td>
+
+
+      </tr>
+
+    }
+
+  </tbody>
+
+</table>

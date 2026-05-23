@@ -56,7 +56,9 @@ export class ClientesService {
     if (data.estado === EstadoCliente.BAJA) {
       const proyectosAsociados = await this.proyectoRepository.count({
         where: {
-          clienteId: id,
+          cliente: {
+            id,
+          },
         },
       });
 
