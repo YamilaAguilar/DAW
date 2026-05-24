@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,33 @@ export class ClientesService {
 
   constructor(private http: HttpClient) {}
 
-  getClientes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  // GET CLIENTES (con filtros)
+  getClientes(nombre?: string, estado?: string): Observable<any[]> {
+    let params = new HttpParams();
+
+    if (nombre) {
+      params = params.set('nombre', nombre);
+    }
+
+    if (estado) {
+      params = params.set('estado', estado);
+    }
+
+    return this.http.get<any[]>(this.apiUrl, { params });
+  }
+
+  // POST CLIENTE
+  crearCliente(data: any) {
+    return this.http.post(this.apiUrl, data);
+  }
+
+  // PUT CLIENTE
+  editarCliente(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+
+  // PUT específico
+  updateCliente(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
   }
 }

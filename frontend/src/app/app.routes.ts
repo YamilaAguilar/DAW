@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { ProyectosListComponent } from './pages/proyectos-list/proyectos-list';
 import { ProyectoFormComponent } from './pages/proyecto-form/proyecto-form';
+import { ClientesList } from './pages/clientes-list/clientes-list';
 
 export const routes: Routes = [
   {
@@ -28,5 +29,10 @@ export const routes: Routes = [
   {
     path: 'proyectos/:id',
     component: ProyectoFormComponent
+  },
+
+   {
+    path: 'clientes',
+    component: ClientesList
   },
 ];
