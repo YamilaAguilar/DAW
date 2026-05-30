@@ -16,6 +16,8 @@ export class ClientesList implements OnInit {
 
   nombre = '';
   estado = 'Activo';
+  email = '';
+  telefono = '';
 
   editandoId: number | null = null;
 
@@ -44,6 +46,8 @@ guardar() {
   const data = {
     nombre: this.nombre,
     estado: this.estado,
+    email: this.email,
+    telefono: this.telefono,
   };
 
   if (this.editandoId) {
@@ -64,12 +68,16 @@ guardar() {
   editar(c: any) {
     this.nombre = c.nombre;
     this.estado = c.estado;
+    this.email = c.email || '';
+    this.telefono = c.telefono || '';
     this.editandoId = c.id;
   }
 
   limpiar() {
     this.nombre = '';
     this.estado = 'Activo';
+    this.email = '';
+    this.telefono = '';
     this.editandoId = null;
   }
 

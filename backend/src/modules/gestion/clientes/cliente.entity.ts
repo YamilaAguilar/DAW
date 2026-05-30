@@ -19,4 +19,10 @@ export class Cliente {
     default: EstadoCliente.ACTIVO,
   })
   estado!: EstadoCliente;
+
+  @Column({ nullable: true })
+  email!: string;
+
+  @Column({ nullable: true })
+  telefono!: string;
 }
