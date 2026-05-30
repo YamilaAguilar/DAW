@@ -1,0 +1,71 @@
+<h2>Nuevo Proyecto</h2>
+
+<form (ngSubmit)="guardarProyecto()">
+
+  <div>
+    <label>Nombre</label>
+    <br>
+
+    <input
+      type="text"
+      [(ngModel)]="proyecto.nombre"
+      name="nombre">
+  </div>
+
+  <br>
+
+  <div>
+    <label>Estado</label>
+    <br>
+
+    <select
+      [(ngModel)]="proyecto.estado"
+      name="estado">
+
+      <option value="Activo">
+        Activo
+      </option>
+
+      <option value="Finalizado">
+        Finalizado
+      </option>
+
+      <option value="Baja">
+        Baja
+      </option>
+
+    </select>
+  </div>
+
+  <br>
+
+  <div>
+    <label>Cliente</label>
+    <br>
+
+    <select
+      [(ngModel)]="proyecto.clienteId"
+      name="clienteId">
+
+      <option value="">
+        Proyecto interno
+      </option>
+
+      <option
+        *ngFor="let c of clientes"
+        [value]="c.id">
+
+        {{ c.nombre }}
+
+      </option>
+
+    </select>
+  </div>
+
+  <br>
+
+  <button type="submit">
+    Guardar
+  </button>
+
+</form>

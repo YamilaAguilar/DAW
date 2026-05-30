@@ -4,6 +4,7 @@ import { ClientesModule } from './modules/gestion/clientes/clientes.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { ProyectosModule } from './proyectos/proyectos.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     AuthModule,
     ClientesModule,
+    ProyectosModule,
   ],
   controllers: [],
   providers: [],
