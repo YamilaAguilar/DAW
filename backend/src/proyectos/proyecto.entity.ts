@@ -29,6 +29,12 @@ export class Proyecto {
   })
   estado!: EstadoProyecto;
 
+  @Column({ type: 'date' })
+  fechaInicio!: Date;
+
+  @Column({ type: 'date' })
+  fechaFinObjetivo!: Date;
+
   @ManyToOne(() => Cliente, {
     nullable: true,
   })
