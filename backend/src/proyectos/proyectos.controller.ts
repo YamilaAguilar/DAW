@@ -40,7 +40,10 @@ export class ProyectosController {
   update(@Param('id', ParseIntPipe) id: number, @Body() body: any) {
     return this.proyectosService.update(id, body);
   }
-
+  @Get(':id/tareas')
+  findTareasByProyecto(@Param('id', ParseIntPipe) id: number) {
+  return this.proyectosService.findTareasByProyecto(id);
+  }
   @Get('estadisticas/resumen')
   getResumenEstadisticas() {
     return this.proyectosService.getResumenEstadisticas();

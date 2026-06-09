@@ -94,7 +94,11 @@ export class ProyectosService {
 
     return this.proyectosRepository.save(proyecto);
   }
-
+    async findTareasByProyecto(proyectoId: number) {
+    return this.tareasRepository.find({
+      where: { proyecto: { id: proyectoId } },
+    });
+  }
   async getResumenEstadisticas() {
     // Cantidad de proyectos en estado ACTIVO
     const proyectosActivos = await this.proyectosRepository.count({

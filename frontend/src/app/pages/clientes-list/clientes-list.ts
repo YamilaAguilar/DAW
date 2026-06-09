@@ -25,22 +25,6 @@ export class ClientesList implements OnInit {
     this.cargar();
   }
 
-<<<<<<< HEAD
-cargar() {
-  this.clientesService.getClientes().subscribe({
-    next: (data : any) => {
-      console.log('DATA RAW:', data);
-      this.clientes = [...data]; 
-    },
-    error: (err : any) => console.error(err),
-  });
-}
-
-guardar() {
-  if (!this.nombre || this.nombre.trim() === '') {
-    alert('El nombre es obligatorio');
-    return;
-=======
   cargar() {
     this.clientesService.getClientes().subscribe({
       next: (data) => {
@@ -49,7 +33,6 @@ guardar() {
       },
       error: (err) => console.error(err),
     });
->>>>>>> upstream/master
   }
 
   guardar() {

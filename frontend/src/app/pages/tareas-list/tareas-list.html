@@ -6,18 +6,42 @@
         <strong>Cliente:</strong>
         {{ proyecto?.cliente ? proyecto?.cliente?.nombre : 'Proyecto interno' }}
       </span>
-      <span *ngIf="proyecto"> <strong>Estado:</strong> {{ proyecto?.estado }} </span>
+      <span *ngIf="proyecto">
+        <strong>Estado:</strong> {{ proyecto?.estado }}
+      </span>
     </h2>
 
     <div class="acciones">
       <button pButton type="button" label="Crear tarea" (click)="crearTarea()"></button>
+      <input
+        type="text"
+        [(ngModel)]="descripcionFiltro"
+        placeholder="Buscar descripción..."
+        class="p-inputtext"
+      />
+      <button pButton type="button" label="Exportar CSV" icon="pi pi-download" (click)="exportarCSV()"></button>
     </div>
 
-    <p-table [value]="tareas" [loading]="cargando" dataKey="id">
+    <p-table [value]="tareasFiltradas" [loading]="cargando" [paginator]="true" [rows]="10" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
-          <th>Descripción</th>
-          <th>Estado</th>
+          <th pSortableColumn="descripcion">
+            Descripción <p-sortIcon field="descripcion" />
+          </th>
+          <th pSortableColumn="estado">
+            Estado <p-sortIcon field="estado" />
+            <p-columnFilter field="estado" matchMode="equals" display="menu">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-select
+                  [options]="estados"
+                  [ngModel]="value"
+                  (onChange)="filter($event.value)"
+                  placeholder="Filtrar estado"
+                  [showClear]="true"
+                ></p-select>
+              </ng-template>
+            </p-columnFilter>
+          </th>
           <th style="width: 10rem">Acciones</th>
         </tr>
       </ng-template>

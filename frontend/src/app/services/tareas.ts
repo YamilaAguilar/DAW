@@ -24,6 +24,7 @@ export class TareasService {
   constructor(private readonly http: HttpClient) {}
 
   getTareas(proyectoId: number): Observable<TareaDTO[]> {
+    
     return this.http.get<TareaDTO[]>(`${this.apiUrl}/${proyectoId}/tareas`);
   }
 
