@@ -1,21 +1,20 @@
 <app-template>
   <div class="estadisticas-page">
     <h2>Estadísticas</h2>
+    <p>DEBUG: {{ resumen | json }}</p>
 
-    <div *ngIf="cargando" class="cargando">Cargando estadísticas...</div>
-
-    <div class="tarjetas" *ngIf="!cargando && resumen as r">
+    <div class="tarjetas">
       <div class="tarjeta">
         <div class="titulo">Proyectos activos</div>
-        <div class="valor">{{ r.proyectosActivos }}</div>
+        <div class="valor">{{ resumen?.proyectosActivos }}</div>
       </div>
       <div class="tarjeta">
         <div class="titulo">Tareas pendientes</div>
-        <div class="valor">{{ r.tareasPendientes }}</div>
+        <div class="valor">{{ resumen?.tareasPendientes }}</div>
       </div>
     </div>
 
-    <table class="tabla" *ngIf="!cargando && resumen as r">
+    <table class="tabla">
       <thead>
         <tr>
           <th>Cliente</th>
@@ -23,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of r.proyectosPorCliente">
+        <tr *ngFor="let item of resumen?.proyectosPorCliente || []">
           <td>{{ item.cliente }}</td>
           <td>{{ item.cantidad }}</td>
         </tr>

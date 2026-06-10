@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesService {
 
-  private apiUrl = 'http://localhost:3000/clientes';
+  private apiUrl = '/api/clientes';
 
   constructor(private http: HttpClient) {}
 

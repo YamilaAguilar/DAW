@@ -9,7 +9,7 @@ interface LoginResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthApiClient {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:3000/auth';
+  private readonly baseUrl = '/api/auth';
 
   login(nombreUsuario: string, clave: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.baseUrl}/login`, {

@@ -46,7 +46,6 @@ export class GestionProyectoComponent {
 
   ngOnInit(): void {
     this.clientesService.getClientes().subscribe((data) => {
-      // Solo mostrar clientes activos para que cumpla la consigna
       this.clientes = data.filter((c: any) => c.estado === 'Activo');
     });
   }

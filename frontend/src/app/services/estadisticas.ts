@@ -10,7 +10,7 @@ export interface ResumenEstadisticas {
 
 @Injectable({ providedIn: 'root' })
 export class EstadisticasService {
-  private readonly apiUrl = 'http://localhost:3000/proyectos/estadisticas/resumen';
+  private readonly apiUrl = '/api/proyectos/estadisticas/resumen';
 
   constructor(private readonly http: HttpClient) {}
 

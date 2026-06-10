@@ -19,7 +19,7 @@ export interface UpdateTareaDTO {
 
 @Injectable({ providedIn: 'root' })
 export class TareasService {
-  private readonly apiUrl = 'http://localhost:3000/proyectos';
+  private readonly apiUrl = '/api/proyectos';
 
   constructor(private readonly http: HttpClient) {}
 
