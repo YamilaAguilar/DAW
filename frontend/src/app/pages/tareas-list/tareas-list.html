@@ -1,0 +1,88 @@
+<app-template>
+  <div class="tareas-page">
+
+    <p-button
+      icon="pi pi-arrow-left"
+      label="Volver"
+      styleClass="p-button-text"
+      (click)="volver()"
+    ></p-button>
+
+    <h2 class="tareas-header">
+      <span *ngIf="proyecto"><strong>Proyecto:</strong> {{ proyecto?.nombre }}</span>
+      <span *ngIf="proyecto">
+        <strong>Cliente:</strong>
+        {{ proyecto?.cliente ? proyecto?.cliente?.nombre : 'Proyecto interno' }}
+      </span>
+      <span *ngIf="proyecto">
+        <strong>Estado:</strong> {{ proyecto?.estado }}
+      </span>
+    </h2>
+
+    <div class="acciones">
+      <button pButton type="button" label="Crear tarea" (click)="crearTarea()"></button>
+      <input
+        type="text"
+        [(ngModel)]="descripcionFiltro"
+        placeholder="Buscar descripción..."
+        class="p-inputtext"
+      />
+      <button pButton type="button" label="Exportar CSV" icon="pi pi-download" (click)="exportarCSV()"></button>
+    </div>
+
+    <p-table [value]="tareasFiltradas" [loading]="cargando" [paginator]="true" [rows]="3" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="descripcion" style="width: 50%">
+            Descripción <p-sortIcon field="descripcion" />
+          </th>
+          <th pSortableColumn="estado" style="width: 35%">
+            Estado <p-sortIcon field="estado" />
+            <p-columnFilter field="estado" matchMode="equals" display="menu">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-select
+                  [options]="estados"
+                  [ngModel]="value"
+                  (onChange)="filter($event.value)"
+                  placeholder="Filtrar estado"
+                  [showClear]="true"
+                ></p-select>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th style="width: 15%">Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-tarea>
+        <tr>
+          <td>{{ tarea.descripcion }}</td>
+          <td>{{ tarea.estado }}</td>
+          <td>
+            <button
+              pButton
+              type="button"
+              label="Editar"
+              class="p-button-text p-button-sm"
+              (click)="editarTarea(tarea)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              label="Eliminar"
+              class="p-button-danger p-button-sm"
+              (click)="eliminarTarea(tarea)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</app-template>
+
+<app-gestion-tarea
+  [(visible)]="dialogVisible"
+  [proyectoId]="proyectoId"
+  [(tareaSeleccionada)]="tareaSeleccionada"
+  (guardado)="cargarTareas()"
+></app-gestion-tarea>

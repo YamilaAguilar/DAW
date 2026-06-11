@@ -1,0 +1,13 @@
+h1 {
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: #b00020;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.acciones-superiores {
+  margin-bottom: 1rem;
+}

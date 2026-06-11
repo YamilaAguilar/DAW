@@ -1,0 +1,18 @@
+.tareas-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tareas-header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}

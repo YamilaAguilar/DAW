@@ -6,11 +6,16 @@ const users_service_1 = require("./modules/auth/services/users.service");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
-        origin: 'http://localhost:4200',
+        origin: ['http://localhost:4200', 'http://localhost', 'https://localhost']
     });
+    app.setGlobalPrefix('api');
     const usersService = app.get(users_service_1.UsersService);
     await usersService.createAdminIfNotExists();
-    await app.listen(3000);
+    const port = process.env.PORT || 4000;
+    await app.listen(port);
 }
-bootstrap();
+bootstrap().catch((err) => {
+    console.error('Error al iniciar la aplicación Nest:', err);
+    process.exit(1);
+});
 //# sourceMappingURL=main.js.map

@@ -1,0 +1,31 @@
+<app-template>
+  <div class="estadisticas-page">
+    <h2>Estadísticas</h2>
+
+    <div class="tarjetas">
+      <div class="tarjeta">
+        <div class="titulo">Proyectos activos</div>
+        <div class="valor">{{ resumen?.proyectosActivos }}</div>
+      </div>
+      <div class="tarjeta">
+        <div class="titulo">Tareas pendientes</div>
+        <div class="valor">{{ resumen?.tareasPendientes }}</div>
+      </div>
+    </div>
+
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Cantidad de proyectos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of resumen?.proyectosPorCliente || []">
+          <td>{{ item.cliente }}</td>
+          <td>{{ item.cantidad }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-template>

@@ -1,0 +1,25 @@
+<p-dialog
+  header="{{ tareaSeleccionada ? 'Editar tarea' : 'Crear tarea' }}"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '25rem' }"
+  (onHide)="cerrar()"
+>
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="form-contenido">
+    <div class="form-group">
+      <label>Descripción</label>
+      <input pInputText type="text" formControlName="descripcion" />
+    </div>
+
+    <div class="form-group" *ngIf="tareaSeleccionada">
+      <label>Estado</label>
+      <select formControlName="estado">
+        <option *ngFor="let e of estados" [value]="e.value">{{ e.label }}</option>
+      </select>
+    </div>
+
+    <div class="acciones">
+      <button pButton type="submit" label="Guardar"></button>
+    </div>
+  </form>
+</p-dialog>

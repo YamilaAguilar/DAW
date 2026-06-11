@@ -1,0 +1,45 @@
+<p-dialog
+  header="{{ proyectoSeleccionado ? 'Editar proyecto' : 'Crear proyecto' }}"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '30rem' }"
+  (onHide)="cerrar()"
+>
+  <form [formGroup]="form" (ngSubmit)="guardar()" class="form-contenido">
+    <div class="form-group">
+      <label>Nombre</label>
+      <input pInputText type="text" formControlName="nombre" />
+    </div>
+
+    <div class="form-group">
+      <label>Cliente</label>
+      <select formControlName="clienteId">
+        <option [ngValue]="null">Proyecto interno</option>
+        <option *ngFor="let c of clientes" [ngValue]="c.id">{{ c.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <button
+        pButton
+        type="button"
+        label="Gestionar clientes"
+        class="p-button-text"
+        (click)="gestionarClientes()"
+      ></button>
+    </div>
+
+    <div class="form-group">
+      <label>Estado</label>
+      <select formControlName="estado">
+        <option value="Activo">Activo</option>
+        <option value="Finalizado">Finalizado</option>
+        <option value="Baja">Baja</option>
+      </select>
+    </div>
+
+    <div class="acciones">
+      <button pButton type="submit" label="Guardar"></button>
+    </div>
+  </form>
+</p-dialog>

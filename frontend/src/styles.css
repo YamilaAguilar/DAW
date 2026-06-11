@@ -1,1 +1,83 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
+@import 'primeicons/primeicons.css';
+@import '@ng-select/ng-select/themes/default.theme.css';
+
+body {
+  margin: 0;
+  background-color: #d3d7e7; /* color más claro de la paleta */
+}
+
+/* Estilo global para botones PrimeNG usando la paleta azul */
+.p-button,
+.p-button.p-button-primary {
+  background-color: #465779;
+  border-color: #465779;
+  border-radius: 9999px;
+}
+
+.p-button:hover,
+.p-button.p-button-primary:hover {
+  background-color: #221831;
+  border-color: #221831;
+}
+
+.p-button.p-button-text {
+  background-color: transparent;
+  color: #465779;
+  border-color: transparent;
+}
+
+.p-button.p-button-danger {
+  background-color: #b00020;
+  border-color: #b00020;
+}
+
+.p-button.p-button-danger:hover {
+  background-color: #7c0017;
+  border-color: #7c0017;
+}
+
+/* Botón "Crear Proyecto" (PrimeNG p-button) - primario */
+#boton-crear-proyecto {
+  margin: 1rem 1rem 0 1rem;
+}
+
+#boton-crear-proyecto button {
+  background-color: #465779; /* azul intermedio */
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px; /* bien redondeado */
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#boton-crear-proyecto button:hover {
+  background-color: #221831; /* tono más oscuro al hacer hover */
+}
+
+/* Botones de acciones en la tabla (Gestionar / Editar) */
+#boton-gestionar-tareas button,
+#boton-editar-proyecto button {
+  background-color: #99b3c6;
+  color: #221831;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+#boton-gestionar-tareas button:hover,
+#boton-editar-proyecto button:hover {
+  background-color: #465779;
+  color: #ffffff;
+}
+
+.p-dialog {
+  margin: 1rem;
+}

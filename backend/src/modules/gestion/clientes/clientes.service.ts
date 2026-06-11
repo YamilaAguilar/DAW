@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 
 import { Cliente, EstadoCliente } from './cliente.entity';
 import { Proyecto } from '../../../proyectos/proyecto.entity';
@@ -24,9 +24,9 @@ export class ClientesService {
   async findAll(nombre?: string, estado?: string) {
   const where: any = {};
 
-  if (nombre) {
-    where.nombre = nombre;
-  }
+ if (nombre) {
+  where.nombre = ILike(`%${nombre}%`);
+ }
 
   if (estado) {
     where.estado = estado;

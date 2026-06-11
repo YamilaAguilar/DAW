@@ -38,10 +38,10 @@ proyectoId: number | null = null;
 
  ngOnInit(): void {
 
-  this.clientesService.getClientes().subscribe(data => {
+  this.clientesService.getClientes().subscribe((data : any[]) => {
 
     this.clientes = data.filter(
-      c => c.estado === 'Activo'
+      (c: any) => c.estado === 'Activo'
     );
 
   });
@@ -55,7 +55,7 @@ proyectoId: number | null = null;
     this.proyectoId = Number(id);
 
     this.proyectosService.getProyecto(this.proyectoId)
-      .subscribe(data => {
+      .subscribe((data: any) => {
 
        this.proyecto = {
           nombre: data.nombre,
@@ -95,7 +95,7 @@ proyectoId: number | null = null;
 
         },
 
-        error: (err) => {
+        error: (err: any) => {
 
           console.error(err);
 
@@ -119,7 +119,7 @@ proyectoId: number | null = null;
 
         },
 
-        error: (err) => {
+        error: (err: any) => {
 
           console.error(err);
 

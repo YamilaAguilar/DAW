@@ -1,0 +1,19 @@
+<div class="login-container">
+  <h1>Sistema de gestión de proyectos</h1>
+
+  <form [formGroup]="form" (ngSubmit)="login()" class="login-form">
+    <label>
+      Usuario
+      <input type="text" formControlName="nombreUsuario" />
+    </label>
+
+    <label>
+      Clave de acceso
+      <input type="password" formControlName="clave" />
+    </label>
+
+    <button type="submit" [disabled]="cargando">Iniciar sesión</button>
+
+    <p *ngIf="error" class="error">{{ error }}</p>
+  </form>
+</div>
