@@ -21,8 +21,8 @@ export class Cliente {
   estado!: EstadoCliente;
 
   @Column({ nullable: true })
-    telefono?: string;
+  email?: string;
 
-    @Column({ nullable: true })
-    email?: string;
+  @Column({ nullable: true })
+  telefono?: string;
 }
