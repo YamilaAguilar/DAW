@@ -34,6 +34,8 @@ export class ClientesList implements OnInit {
   nombre = '';
   estado = 'Activo';
   dialogVisible = false;
+  telefono = '';
+  email = '';
 
   estadoOpciones = [
     { label: 'Activo', value: 'Activo' },
@@ -59,18 +61,40 @@ export class ClientesList implements OnInit {
     });
   }
 
-  mostrarDialog() {
+ mostrarDialog() {
+    console.log('CLICK OK');
     this.limpiar();
     this.dialogVisible = true;
   }
 
   guardar() {
+    console.log('GUARDAR EJECUTADO');
     if (!this.nombre || this.nombre.trim() === '') {
       this.mostrarErrorNombre = true;
       return;
     }
 
-    const data = { nombre: this.nombre, estado: this.estado };
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (this.email && !emailRegex.test(this.email)) {
+        alert('Email inválido');
+        return;
+      }
+
+    const telefonoRegex = /^[0-9]{7,15}$/;
+
+      if (this.telefono && !telefonoRegex.test(this.telefono)) {
+        alert('Teléfono inválido (solo números, 7 a 15 dígitos)');
+        return;
+      }
+
+
+    const data = {
+      nombre: this.nombre,
+      estado: this.estado,
+      telefono: this.telefono,
+      email: this.email,
+    };
 
     if (this.editandoId) {
       this.clientesService.updateCliente(this.editandoId, data).subscribe(() => {
@@ -88,6 +112,8 @@ export class ClientesList implements OnInit {
   editar(c: any) {
     this.nombre = c.nombre;
     this.estado = c.estado;
+    this.telefono = c.telefono;
+    this.email = c.email;
     this.editandoId = c.id;
     this.mostrarErrorNombre = false;
     this.dialogVisible = true;
@@ -96,9 +122,10 @@ export class ClientesList implements OnInit {
   limpiar() {
     this.nombre = '';
     this.estado = 'Activo';
+    this.telefono = '';
+    this.email = '';
     this.editandoId = null;
     this.mostrarErrorNombre = false;
-    this.dialogVisible = false;
   }
 
   darBaja(id: number) {

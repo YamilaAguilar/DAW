@@ -17,6 +17,8 @@ export class ClienteFormComponent implements OnInit {
 
   nombre = '';
   estado = 'Activo';
+  telefono = '';
+  email = '';
 
   constructor(private clientesService: ClientesService) {}
 
@@ -24,6 +26,8 @@ export class ClienteFormComponent implements OnInit {
     if (this.cliente) {
       this.nombre = this.cliente.nombre;
       this.estado = this.cliente.estado;
+      this.telefono = this.cliente.telefono;
+      this.email = this.cliente.email;
     }
   }
 
@@ -31,8 +35,10 @@ export class ClienteFormComponent implements OnInit {
     const data = {
       nombre: this.nombre,
       estado: this.estado,
+      telefono: this.telefono,
+      email: this.email,
     };
-
+    
     if (this.cliente) {
       this.clientesService.updateCliente(this.cliente.id, data)
         .subscribe(() => this.cerrar.emit());

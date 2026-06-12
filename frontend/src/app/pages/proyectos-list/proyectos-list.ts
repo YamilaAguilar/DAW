@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { GestionProyectoComponent } from '../../proyectos/gestion/gestion-proyecto';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-proyectos-list',
@@ -27,6 +28,7 @@ import { GestionProyectoComponent } from '../../proyectos/gestion/gestion-proyec
     TableModule,
     TooltipModule,
     GestionProyectoComponent,
+    RouterLink
   ],
 
   templateUrl: './proyectos-list.html',

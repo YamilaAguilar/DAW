@@ -20,7 +20,6 @@
   </div>
 
 
-  <!-- FILTROS DE FERNANDO -->
   <div class="filtros">
 
     <label>Estado:</label>
@@ -126,11 +125,12 @@
         <td>
 
 
+        <a [routerLink]="['/proyectos', proyecto.id]">
           <p-button
-            icon="pi pi-list"
-            pTooltip="Gestionar Tareas"
-            (click)="gestionarTareas(proyecto)">
+            icon="pi pi-eye"
+            pTooltip="Ver detalle">
           </p-button>
+        </a>
 
 
           <p-button
@@ -138,14 +138,6 @@
             pTooltip="Editar Proyecto"
             (click)="editarProyecto(proyecto)">
           </p-button>
-
-
-          <p-button
-            icon="pi pi-eye"
-            pTooltip="Ver detalle"
-            [routerLink]="['/proyectos', proyecto.id]">
-          </p-button>
-
 
         </td>
 
